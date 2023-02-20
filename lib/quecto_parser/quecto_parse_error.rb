@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 #
-# Errors rised by the parser.
+# Errors rised by the lexer/parser.
 #
-class QuectoError < ::StandardError
-  attr_reader :error_name, :message
+class QuectoParseError < ::StandardError
+  attr_reader :message
 
-  def initialize(error_name, message)
-    @error_name = error_name
+  def initialize(message)
     @message = message
     super()
   end
@@ -16,21 +15,21 @@ end
 #
 # Raised by the lexer if an illegal character is found.
 #
-class IllegalCharError < QuectoError
+class IllegalCharError < QuectoParseError
   attr_reader :message
 
   def initialize(message = "")
-    super("Illegal Character:", message)
+    super(message)
   end
 end
 
 #
 # Raised by the parser if an illegal syntax is found.
 #
-class InvalidSyntaxError < QuectoError
+class InvalidSyntaxError < QuectoParseError
   attr_reader :message
 
   def initialize(message = "")
-    super("Syntax Error:", message)
+    super(message)
   end
 end

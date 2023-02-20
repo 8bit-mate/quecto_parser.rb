@@ -16,24 +16,11 @@ class QuectoParser
   #
   # @param [String] expr
   #
-  # @return [BinOpNode, NumberNode]
+  # @return [BinOpNode, NumberNode, nil]
   #
   def parse_expr(expr)
     tokens = build_tokens(expr)
-    build_ast(tokens)
-  end
-
-  #
-  # Get a list of tokens from the string.
-  #
-  # @param [String] expr
-  #
-  # @return [Array<Token>] tokens
-  #
-  def build_tokens(expr)
-    Lexer.new(expr).build_tokens
-  rescue IllegalCharError => e
-    puts "#{e.error_name} #{e.message}"
+    build_ast(tokens) if tokens
   end
 
   #
@@ -41,11 +28,24 @@ class QuectoParser
   #
   # @param [Array<Token>] tokens
   #
-  # @return [BinOpNode, NumberNode]
+  # @return [BinOpNode, NumberNode, nil]
   #
   def build_ast(tokens)
     Parser.new(tokens).parse
   rescue InvalidSyntaxError => e
-    puts "#{e.error_name} #{e.message}"
+    puts "[#{e.class}] #{e.message}"
+  end
+
+  #
+  # Get a list of tokens from the string.
+  #
+  # @param [String] expr
+  #
+  # @return [Array<Token>, nil] tokens
+  #
+  def build_tokens(expr)
+    Lexer.new(expr).build_tokens
+  rescue IllegalCharError => e
+    puts "[#{e.class}] #{e.message}"
   end
 end

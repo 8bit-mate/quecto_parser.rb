@@ -2,7 +2,7 @@
 
 require_relative "bin_op_node"
 require_relative "number_node"
-require_relative "quecto_error"
+require_relative "quecto_parse_error"
 require_relative "token_types"
 
 #

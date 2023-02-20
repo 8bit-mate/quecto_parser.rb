@@ -1,6 +1,6 @@
 # QuectoParser
 
-A very simple lexer/parser.
+A very simple lexer/parser for primitive arithmetic expressions.
 
 ## Installation
 
@@ -20,7 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Examples
+
+```ruby
+require "quecto_parser"
+
+parser = QuectoParser.new
+
+expr = "1 + foo - bar"
+
+# get list of tokens:
+tokens = parser.build_tokens(expr)
+
+# build AST from tokens:
+ast = parser.build_ast(tokens)
+
+# or parse expression with a single command:
+ast = parser.parse_expr(expr)
+
+```
 
 ## Development
 
@@ -28,7 +46,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/quecto_parser.
+Bug reports and pull requests are welcome on GitHub at https://github.com/8bit-mate/quecto_parser.
 
 ## Acknowledges
 

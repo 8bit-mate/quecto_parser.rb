@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "char_rules"
-require_relative "quecto_error"
+require_relative "quecto_parse_error"
 require_relative "token"
 require_relative "token_types"
 
@@ -32,7 +32,7 @@ class Lexer
   # @return [Array<Token>] tokens
   #
   # @raise [IllegalCharError]
-  #   Raises when @str has an unsupported character.
+  #   Raises if @str has an unsupported character.
   #
   def build_tokens
     tokens = []
@@ -95,7 +95,6 @@ class Lexer
       word += @cur_char
       _next_char
     end
-    _next_char
 
     @pos -= 1
     word
