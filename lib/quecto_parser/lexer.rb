@@ -46,7 +46,7 @@ class Lexer
         num = Token.new(type: TT_INT, value: _build_word(NUM_CHAR).to_i)
         tokens.append(num)
       elsif @cur_char.match?(CONST_FIRST_CHAR)
-        num = Token.new(type: TT_CONST, value: _build_word(CONTS_CHAR))
+        num = Token.new(type: TT_CONST, value: _build_word(CONST_CHAR))
         tokens.append(num)
       elsif @cur_char.match?(IGNOR_CHAR)
         # Ignore whitespace.
@@ -82,7 +82,7 @@ class Lexer
   #
   # @param [Regexp] regexp
   #   Defines that kind of character sequence the method should be looking for: NUM_CHAR (search for a digit) or
-  #   CONTS_CHAR (search for a constant).
+  #   CONST_CHAR (search for a constant).
   #
   # @return [String] word
   #
